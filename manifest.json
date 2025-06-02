@@ -1,0 +1,41 @@
+{
+  "manifest_version": 3,
+  "name": "YouTube Ad Muter & Skipper",
+  "description": "Automatically mute and skip ads on YouTube.",
+  "version": "1.0",
+  "permissions": [
+    "tabs",
+    "scripting",
+    "storage",
+    "notifications",
+    "activeTab"
+  ],
+  "host_permissions": ["https://www.youtube.com/*"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "128": "icons/icon128.png"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://www.youtube.com/*"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "commands": {
+    "_execute_action": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+Z"
+      },
+      "description": "Open control panel"
+    }
+  },
+  "icons": {
+    "128": "icons/icon128.png"
+  }
+}
